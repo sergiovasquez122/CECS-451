@@ -26,6 +26,7 @@ def construct_graph(map_file = 'map.txt', distance_file = 'distances.txt'):
     return G, h
 
 def path_to_bucharest(G, h, source):
+    if source not in G: return None # if source is not in the graph no reason to traverse
     frontier = [(h[source], source)] # equivalent to [(0, source)] as the heuristic will be removed
     cost = {source : 0} # distance traveled
     parent_pointer = {source : None} # used to find path from destination from source if possible
@@ -41,14 +42,26 @@ def path_to_bucharest(G, h, source):
             return path, cost["Bucharest"]
 
         for neighbor, g_cost in G[current_node]: # traverse nodes adjacent to current node and relax the edge if possible
-            if neighbor not in parent_pointer or node_cost + g_cost + h[neighbor] < cost[neighbor]:
+            if neighbor not in parent_pointer or node_cost + g_cost + h[neighbor] < cost[neighbor]: # did we find a better f(n), if so update
                 cost[neighbor] = node_cost + g_cost
                 parent_pointer[neighbor] = current_node
                 pq.heappush(frontier, (cost[neighbor] + h[neighbor], neighbor))
 
     return None # could not find a path to destination
 
+def pretty_print(path, distance_traveled):
+    print("From city:", path[0])
+    print("To city:", path[len(path) - 1])
+    pretty_path = ""
+    for city in path[:len(path) - 1]:
+        pretty_path += city + " - "
+    pretty_path += path[len(path) - 1]
+    print("Best route:", pretty_path)
+    print("Total distance:", distance_traveled)
+
 if __name__ == '__main__':
     G, h = construct_graph()
     for source in G.keys():
-        print(path_to_bucharest(G, h, source))
+       path, distance_traveled = path_to_bucharest(G, h, source)
+       pretty_print(path, distance_traveled)
+       print()
