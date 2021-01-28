@@ -26,12 +26,11 @@ def construct_graph(map_file = 'map.txt', distance_file = 'distances.txt'):
     return G, h
 
 def path_to_bucharest(G, h, source):
-    frontier = [(source, h[source])]
+    frontier = [(h[source], source)]
     cost = {source : 0}
     parent_pointer = {source : None}
     while len(frontier) != 0:
-        frontier.sort(key=lambda x:x[1], reverse=True)
-        current_node, node_cost = frontier.pop()
+        node_cost, current_node = pq.heappop(frontier)
         node_cost -= h[current_node]
         if current_node == "Bucharest":
             path = []
@@ -45,7 +44,7 @@ def path_to_bucharest(G, h, source):
             if neighbor not in parent_pointer or node_cost + g_cost + h[neighbor] < cost[neighbor]:
                 cost[neighbor] = node_cost + g_cost
                 parent_pointer[neighbor] = current_node
-                frontier.append((neighbor, cost[neighbor] + h[neighbor]))
+                pq.heappush(frontier, (cost[neighbor] + h[neighbor], neighbor))
     return None
 
 if __name__ == '__main__':
