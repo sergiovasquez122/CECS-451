@@ -27,25 +27,26 @@ def construct_graph(map_file = 'map.txt', distance_file = 'distances.txt'):
 
 def path_to_bucharest(G, h, source):
     if source not in G: return None # if source is not in the graph no reason to traverse
-    frontier = [(h[source], source)] # equivalent to [(0, source)] as the heuristic will be removed
-    cost = {source : 0} # distance traveled
+    g = {source : 0} # distance traveled so far
+    f = {source : h[source]} # estimated distance to travel
+    frontier = [(f[source], source)]
     parent_pointer = {source : None} # used to find path from destination from source if possible
     while len(frontier) != 0:
-        node_cost, current_node = pq.heappop(frontier)
-        node_cost -= h[current_node] # the heuristic function is removed so that we only count the distance traveled of the current node
-        if current_node == "Bucharest": # A* guarantees that once the target node has been dequeued the path back is optimal
+        _, current_node = pq.heappop(frontier)
+        if current_node == "Bucharest": # A* guarantees that once the target node has been dequeued the solution is optimal
             path = []
             while current_node != None:
                 path.append(current_node)
                 current_node = parent_pointer[current_node]
             path.reverse()
-            return path, cost["Bucharest"]
+            return path, g["Bucharest"]
 
         for neighbor, g_cost in G[current_node]: # traverse nodes adjacent to current node and relax the edge if possible
-            if neighbor not in parent_pointer or node_cost + g_cost + h[neighbor] < cost[neighbor]: # did we find a better f(n), if so update
-                cost[neighbor] = node_cost + g_cost
+            if neighbor not in parent_pointer or g[current_node] + g_cost + h[neighbor] < f[neighbor]: # did we find a better f(n), if so update
+                g[neighbor] = g[current_node] + g_cost
+                f[neighbor] = g[neighbor] + h[neighbor]
                 parent_pointer[neighbor] = current_node
-                pq.heappush(frontier, (cost[neighbor] + h[neighbor], neighbor))
+                pq.heappush(frontier, (f[neighbor], neighbor))
 
     return None # could not find a path to destination
 
