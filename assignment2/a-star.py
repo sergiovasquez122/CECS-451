@@ -39,13 +39,13 @@ def path_to_bucharest(G, h, source):
                 path.append(current_node)
                 current_node = parent_pointer[current_node]
             path.reverse()
-            return path, g["Bucharest"]
+            return path, g["Bucharest"] # return the path to bucharest and the total distance traveled to get to it
 
         for neighbor, g_cost in G[current_node]: # traverse nodes adjacent to current node and relax the edge if possible
             if neighbor not in parent_pointer or g[current_node] + g_cost + h[neighbor] < f[neighbor]: # did we find a better f(n), if so update
                 g[neighbor] = g[current_node] + g_cost
-                f[neighbor] = g[neighbor] + h[neighbor]
-                parent_pointer[neighbor] = current_node
+                f[neighbor] = g[neighbor] + h[neighbor] # evaluation function f(n) = g(n) + h(n) as described in lecture
+                parent_pointer[neighbor] = current_node # updating parent pointer for when solution is found we can trace back to source
                 pq.heappush(frontier, (f[neighbor], neighbor))
 
     return None # could not find a path to destination
