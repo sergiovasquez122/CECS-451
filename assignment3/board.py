@@ -1,3 +1,4 @@
+from copy import deepcopy
 import random
 import numpy as np
 
@@ -12,7 +13,7 @@ class Board:
             j = random.randint(0, self.n_queen - 1)
             self.map[i][j] = 1
 
-    def fitness(self):        
+    def fitness(self):
         for i in range(self.n_queen):
             for j in range(self.n_queen):
                 if self.map[i][j] == 1:
@@ -28,6 +29,47 @@ class Board:
         print(np.matrix(self.map))
         print("Fitness: ",  self.fit)
 
+    def valid(self, i, j):
+        return i >= 0 and i < self.n_queen and j >= 0 and j < self.n_queen and self.map[i][j] == 0
+
+    def which_queen_to_move(self):
+        return np.random.random_integers(1, self.n_queen)
+
+    def find_coordinate_of_queen_to_move(self):
+        queen_number = self.which_queen_to_move()
+        for i in range(len(self.map)):
+            for j in range(len(self.map)):
+                    if self.map[i][j] == 1 and queen_number == 1:
+                        return (i, j)
+                    elif self.map[i][j] == 1:
+                        queen_number -= 1
+        return (None, None) # later change to throw exception, was given an invalid position
+
+    def succ(self):
+        (i, j) = self.find_coordinate_of_queen_to_move()
+        return self.successor(i, j)
+
+    def successor(self, i, j):
+        # assumes that given a valid position
+        possible_movements = [[1, 0], [0, 1], [-1, 0], [0, -1], [-1, -1], [-1, 1], [1, -1], [1, 1]]
+        best_fit = float('inf')
+        best_successor = Board(self.n_queen)
+        for movement in possible_movements:
+            x_new = i + movement[0]
+            y_new = j + movement[1]
+            if self.valid(x_new, y_new):
+                new_map = deepcopy(self.map)
+                new_map[i][j] = 0
+                new_map[x_new][y_new] = 1
+                new_board = Board(self.n_queen)
+                new_board.map = deepcopy(new_map)
+                new_board.fitness()
+                if new_board.get_fit() < best_fit:
+                    best_fit = new_board.get_fit()
+                    best_successor.map = deepcopy(new_board.map)
+                    best_successor.fit = best_fit
+        return best_successor
+
     def flip(self, i, j):
         if self.map[i][j] == 0:
             self.map[i][j] = 1
@@ -39,9 +81,3 @@ class Board:
     
     def get_fit(self):
         return self.fit
-
-            
-if __name__ == '__main__':
-    test = Board(5)
-    test.fitness()
-    test.show()    
