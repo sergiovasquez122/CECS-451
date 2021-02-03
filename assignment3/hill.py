@@ -1,5 +1,6 @@
 from board import *
 from timeit import default_timer as timer
+from datetime import timedelta
 
 def hill(initial_state : Board):
     current = Board(initial_state.n_queen)
@@ -23,11 +24,11 @@ def hill(initial_state : Board):
 if __name__ == '__main__':
     test1 = Board(5)
     test1.fitness()
-    test1.show()
 
     start = timer()
     best_found, restarts = hill(test1)
     end = timer()
-    best_found.show()
+    formatted_time = "{:.2f}".format((end - start) * 1000)
+    print("running time:", formatted_time, "ms")
     print("# of restarts:", restarts)
-    print("duration:", end - start)
+    best_found.show()
