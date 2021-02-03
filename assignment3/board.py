@@ -8,7 +8,7 @@ class Board:
         self.n_queen = n
         self.map = [[0 for j in range(n)] for i in range(n)]
         self.fit = 0
-    
+
         for i in range(self.n_queen):
             j = random.randint(0, self.n_queen - 1)
             self.map[i][j] = 1
@@ -32,14 +32,12 @@ class Board:
     def valid(self, i, j):
         return i >= 0 and i < self.n_queen and j >= 0 and j < self.n_queen and self.map[i][j] == 0
 
-    def which_queen_to_move(self):
-        return np.random.random_integers(1, self.n_queen)
 
     def find_coordinate_of_queen_to_move(self):
-        queen_number = self.which_queen_to_move()
+        queen_number = random.randint(0, self.n_queen - 1)
         for i in range(len(self.map)):
             for j in range(len(self.map)):
-                    if self.map[i][j] == 1 and queen_number == 1:
+                    if self.map[i][j] == 1 and queen_number == 0:
                         return (i, j)
                     elif self.map[i][j] == 1:
                         queen_number -= 1
@@ -54,6 +52,8 @@ class Board:
         possible_movements = [[1, 0], [0, 1], [-1, 0], [0, -1], [-1, -1], [-1, 1], [1, -1], [1, 1]]
         best_fit = float('inf')
         best_successor = Board(self.n_queen)
+        best_successor.map = deepcopy(self.map)
+        best_successor.fit = self.fit
         for movement in possible_movements:
             x_new = i + movement[0]
             y_new = j + movement[1]
@@ -81,3 +81,17 @@ class Board:
     
     def get_fit(self):
         return self.fit
+
+    def set_map(self, map):
+        self.map = map
+
+if __name__ == '__main__':
+    b = Board(4)
+    b.set_map(deepcopy([[1, 1, 1, 1], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]))
+    b.fitness()
+    b.show()
+
+    c = Board(2)
+    c.fitness()
+    c.show()
+
