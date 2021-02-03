@@ -95,3 +95,8 @@ if __name__ == '__main__':
     c.fitness()
     c.show()
 
+    d = Board(4)
+    d.set_map(deepcopy([[1, 0, 0, 0], [1, 0, 0, 0], [1, 0, 0, 0], [1, 0, 0, 0]]))
+    d.fitness()
+    d.show()
+

@@ -1,4 +1,5 @@
 from board import *
+from timeit import default_timer as timer
 
 def hill(initial_state : Board):
     current = Board(initial_state.n_queen)
@@ -24,6 +25,10 @@ if __name__ == '__main__':
     test1.fitness()
     test1.show()
 
+
+    start = timer()
     best_found, restarts = hill(test1)
+    end = timer()
     best_found.show()
-    print(restarts)
+    print("# of restarts:", restarts)
+    print("duration:", end - start)
