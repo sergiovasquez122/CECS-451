@@ -25,7 +25,6 @@ if __name__ == '__main__':
     test1.fitness()
     test1.show()
 
-
     start = timer()
     best_found, restarts = hill(test1)
     end = timer()

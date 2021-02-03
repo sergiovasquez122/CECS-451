@@ -50,6 +50,7 @@ class Board:
     def successor(self, i, j):
         # assumes that given a valid position
         possible_movements = [[1, 0], [0, 1], [-1, 0], [0, -1], [-1, -1], [-1, 1], [1, -1], [1, 1]]
+        possible_movements = [[0, i] for i in range(-self.n_queen, self.n_queen)]
         best_fit = float('inf')
         best_successor = Board(self.n_queen)
         best_successor.map = deepcopy(self.map)
