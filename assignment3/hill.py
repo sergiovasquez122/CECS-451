@@ -1,6 +1,5 @@
 from board import *
 from timeit import default_timer as timer
-from datetime import timedelta
 
 def hill(initial_state : Board):
     current = Board(initial_state.n_queen)
@@ -8,10 +7,10 @@ def hill(initial_state : Board):
     current.fitness()
     restarts = 0
     while True:
-        neighbor = current.succ()
+        neighbor = current.succ() # returns best of all neighbors
         neighbor.fitness()
-        if current.get_fit() <= neighbor.get_fit():
-            if current.get_fit() == 0:
+        if current.get_fit() <= neighbor.get_fit(): # we checked
+            if current.get_fit() == 0: # found global optima
                 return current, restarts
             else:
                 current = Board(initial_state.n_queen)

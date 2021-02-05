@@ -1,5 +1,4 @@
-from copy import deepcopy
-import random
+from copy import deepcopy import random
 import numpy as np
 
 
@@ -14,6 +13,7 @@ class Board:
             self.map[i][j] = 1
 
     def fitness(self):
+        # vertical and diagonal collisions only detected
         for i in range(self.n_queen):
             for j in range(self.n_queen):
                 if self.map[i][j] == 1:
@@ -49,8 +49,8 @@ class Board:
 
     def successor(self, i, j):
         # assumes that given a valid position
-        possible_movements = [[1, 0], [0, 1], [-1, 0], [0, -1], [-1, -1], [-1, 1], [1, -1], [1, 1]]
-        possible_movements = [[0, i] for i in range(-self.n_queen, self.n_queen)]
+        possible_movements = [[1, 0], [0, 1], [-1, 0], [0, -1], [-1, -1], [-1, 1], [1, -1], [1, 1]] # moves all 8 eight directions
+        possible_movements = [[0, i] for i in range(-self.n_queen, self.n_queen)] # columns of a particular row
         best_fit = float('inf')
         best_successor = Board(self.n_queen)
         best_successor.map = deepcopy(self.map)
