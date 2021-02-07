@@ -4,7 +4,7 @@
     <list default="true" id="c057d97d-6242-4bb0-bac2-573c48e7715d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../assignment1/Assn1.log" beforeDir="false" afterPath="$PROJECT_DIR$/../assignment1/Assn1.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../assignment1/Assn1.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/../assignment1/Assn1.synctex.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/genetic.py" beforeDir="false" afterPath="$PROJECT_DIR$/genetic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tags" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,7 +15,7 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/assignment3$hill.coverage" NAME="hill Coverage Results" MODIFIED="1612383521214" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/assignment3$board.coverage" NAME="board Coverage Results" MODIFIED="1612664273432" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/assignment3$genetic.coverage" NAME="genetic Coverage Results" MODIFIED="1612665170749" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/assignment3$genetic.coverage" NAME="genetic Coverage Results" MODIFIED="1612665291452" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FUSProjectUsageTrigger">
     <session id="-1393620326">
@@ -41,12 +41,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="21637" />
+          <entry key="py" value="21738" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="21637" />
+          <entry key="Python" value="21738" />
         </counts>
       </usages-collector>
     </session>
@@ -70,12 +70,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/genetic.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="39" selection-start-line="39" selection-end-line="39" />
+            <state relative-caret-position="144">
+              <caret line="38" column="19" selection-start-line="38" selection-start-column="19" selection-end-line="38" selection-end-column="19" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
-                <marker date="1612665242858" expanded="true" signature="232:296" ph="..." />
-                <marker date="1612665242858" expanded="true" signature="596:959" ph="..." />
+                <marker date="1612665257375" expanded="true" signature="232:296" ph="..." />
+                <marker date="1612665257375" expanded="true" signature="596:986" ph="..." />
               </folding>
             </state>
           </provider>
@@ -302,7 +302,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.52120143" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.52120143" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3975265" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -311,7 +311,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32956383" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.39152542" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.39045936" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -376,12 +376,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/genetic.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="39" selection-start-line="39" selection-end-line="39" />
+        <state relative-caret-position="144">
+          <caret line="38" column="19" selection-start-line="38" selection-start-column="19" selection-end-line="38" selection-end-column="19" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-            <marker date="1612665242858" expanded="true" signature="232:296" ph="..." />
-            <marker date="1612665242858" expanded="true" signature="596:959" ph="..." />
+            <marker date="1612665257375" expanded="true" signature="232:296" ph="..." />
+            <marker date="1612665257375" expanded="true" signature="596:986" ph="..." />
           </folding>
         </state>
       </provider>

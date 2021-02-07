@@ -34,6 +34,13 @@ def generate_initial_population(states=8,n_queens_size = 5):
         populations.append(b)
     return populations
 
+def set_probability_of_population(population):
+    fitnesses = [p.get_fit() for p in population]
+    total_fitness = sum(fitnesses)
+    probabilities = [(f / total_fitness for f in fitnesses)]
+    return probabilities
+
+
 if __name__ == '__main__':
     boards = generate_initial_population()
     for b in boards:
