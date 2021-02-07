@@ -34,11 +34,22 @@ def generate_initial_population(states=8,n_queens_size = 5):
         populations.append(b)
     return populations
 
+
 def set_probability_of_population(population):
     fitnesses = [p.get_fit() for p in population]
     total_fitness = sum(fitnesses)
     probabilities = [(f / total_fitness for f in fitnesses)]
     return probabilities
+
+def selection(population):
+    probabilities = set_probability_of_population(population)
+    running_sum = 0
+    r = random.uniform(0, 1)
+    for i in range(len(probabilities)):
+        running_sum += probabilities[i]
+        if r < running_sum:
+            return population[i]
+    return population[-1]
 
 
 if __name__ == '__main__':
