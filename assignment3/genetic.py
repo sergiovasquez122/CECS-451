@@ -51,6 +51,13 @@ def selection(population):
             return population[i]
     return population[-1]
 
+def cross_over(parent1, parent2):
+    parent1_encoded = encode(parent1)
+    parent2_encoded = encode(parent2)
+    idx = random.randint(0, len(parent1_encoded) - 1)
+    child1 = parent1_encoded[:idx] + parent2_encoded[idx:]
+    child2 = parent2_encoded[:idx] + parent1_encoded[idx:]
+    return child1, child2
 
 if __name__ == '__main__':
     boards = generate_initial_population()
