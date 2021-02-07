@@ -51,13 +51,23 @@ def selection(population):
             return population[i]
     return population[-1]
 
+def mutation(child):
+    idx = random.randint(0, len(child) + 1)
+    if idx == 0:
+        return child
+    altered_child = list(child)
+    altered_child[idx] = str(random.randint(0, len(child) - 1))
+    return ''.join(child)
+
 def cross_over(parent1, parent2):
     parent1_encoded = encode(parent1)
     parent2_encoded = encode(parent2)
     idx = random.randint(0, len(parent1_encoded) - 1)
     child1 = parent1_encoded[:idx] + parent2_encoded[idx:]
     child2 = parent2_encoded[:idx] + parent1_encoded[idx:]
-    return child1, child2
+    child1 = mutation(child1)
+    child2 = mutation(child2)
+    return decode(child1), decode(child2)
 
 if __name__ == '__main__':
     boards = generate_initial_population()
