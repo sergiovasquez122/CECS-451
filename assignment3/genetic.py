@@ -23,9 +23,19 @@ def decode(s : str):
     b.fitness()
     return b
 
+def generate_initial_population(states=8,n_queens_size = 5):
+    populations = []
+    n_choose_2 = combination(n_queens_size, 2)
+    for _ in range(states):
+        b = Board(n_queens_size)
+        b.fitness()
+        b.fit = n_choose_2 - b.fit
+        b.fit = int(b.fit)
+        populations.append(b)
+    return populations
+
 if __name__ == '__main__':
-    s = "31034"
-    b = decode(s)
-    b.show()
-
-
+    boards = generate_initial_population()
+    for b in boards:
+        b.show()
+        print()

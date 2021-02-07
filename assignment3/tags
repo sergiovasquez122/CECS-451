@@ -1,0 +1,16 @@
+!_TAG_FILE_SORTED	2	/0=unsorted, 1=sorted, 2=foldcase/
+b	/home/sergio/CECS-451/assignment3/board.py	/^    b = Board(4)$/;"	v	language:Python
+Board	/home/sergio/CECS-451/assignment3/board.py	/^class Board:$/;"	c	language:Python
+c	/home/sergio/CECS-451/assignment3/board.py	/^    c = Board(2)$/;"	v	language:Python
+d	/home/sergio/CECS-451/assignment3/board.py	/^    d = Board(4)$/;"	v	language:Python
+find_coordinate_of_queen_to_move	/home/sergio/CECS-451/assignment3/board.py	/^    def find_coordinate_of_queen_to_move(self):$/;"	m	language:Python	class:Board
+fitness	/home/sergio/CECS-451/assignment3/board.py	/^    def fitness(self):$/;"	m	language:Python	class:Board
+flip	/home/sergio/CECS-451/assignment3/board.py	/^    def flip(self, i, j):$/;"	m	language:Python	class:Board
+get_fit	/home/sergio/CECS-451/assignment3/board.py	/^    def get_fit(self):$/;"	m	language:Python	class:Board
+get_map	/home/sergio/CECS-451/assignment3/board.py	/^    def get_map(self):$/;"	m	language:Python	class:Board
+set_map	/home/sergio/CECS-451/assignment3/board.py	/^    def set_map(self, map):$/;"	m	language:Python	class:Board
+show	/home/sergio/CECS-451/assignment3/board.py	/^    def show(self):$/;"	m	language:Python	class:Board
+succ	/home/sergio/CECS-451/assignment3/board.py	/^    def succ(self):$/;"	m	language:Python	class:Board
+successor	/home/sergio/CECS-451/assignment3/board.py	/^    def successor(self, i, j):$/;"	m	language:Python	class:Board
+valid	/home/sergio/CECS-451/assignment3/board.py	/^    def valid(self, i, j):$/;"	m	language:Python	class:Board
+__init__	/home/sergio/CECS-451/assignment3/board.py	/^    def __init__(self, n):$/;"	m	language:Python	class:Board
