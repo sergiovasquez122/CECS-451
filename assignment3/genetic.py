@@ -25,15 +25,17 @@ def decode(s : str):
 
 def generate_initial_population(states=8,n_queens_size = 5):
     populations = []
-    n_choose_2 = combination(n_queens_size, 2)
     for _ in range(states):
         b = Board(n_queens_size)
-        b.fitness()
-        b.fit = n_choose_2 - b.fit
-        b.fit = int(b.fit)
         populations.append(b)
     return populations
 
+def set_fitness(population, states):
+    n_choose_2 = combination(states, 2)
+    for p in population:
+        p.fitness()
+        p.fit = n_choose_2 - p.fit
+    return p
 
 def set_probability_of_population(population):
     fitnesses = [p.get_fit() for p in population]
@@ -79,6 +81,17 @@ def next_generation(population):
         children.append(child1)
         children.append(child2)
     return children
+
+def genetic_algorithm(states = 8, n_queen_size = 5):
+    population = generate_initial_population(states, n_queen_size)
+    n_choose_2 = combination(n_queen_size, 2)
+    while True:
+        population = set_fitness(population, states)
+        for p in population:
+            if p.get_fit() == n_choose_2:
+                return p
+        population = next_generation(population)
+
 
 if __name__ == '__main__':
     boards = generate_initial_population()
