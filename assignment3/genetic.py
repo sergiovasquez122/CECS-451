@@ -28,8 +28,8 @@ def generate_initial_population(states=8,n_queens_size = 5):
         populations.append(b)
     return populations
 
-def set_fitness(population, states):
-    n_choose_2 = combination(states, 2)
+def set_fitness(population, n):
+    n_choose_2 = combination(n, 2)
     for p in population:
         p.fitness()
         p.fit = n_choose_2 - p.fit
@@ -56,7 +56,7 @@ def mutation(child):
         return child
     altered_child = list(child)
     altered_child[idx - 1] = str(random.randint(0, len(child) - 1))
-    return ''.join(child)
+    return ''.join(altered_child)
 
 def cross_over(parent1, parent2):
     parent1_encoded = encode(parent1)
@@ -83,7 +83,7 @@ def genetic_algorithm(states = 8, n_queen_size = 5):
     population = generate_initial_population(states, n_queen_size)
     n_choose_2 = combination(n_queen_size, 2)
     while True:
-        set_fitness(population, states)
+        set_fitness(population, n_queen_size)
         for p in population:
             if p.get_fit() == n_choose_2:
                 return p
