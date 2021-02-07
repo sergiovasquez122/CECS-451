@@ -83,18 +83,21 @@ def next_generation(population):
 def genetic_algorithm(states = 8, n_queen_size = 5):
     population = generate_initial_population(states, n_queen_size)
     n_choose_2 = combination(n_queen_size, 2)
+    generations = 1
     while True:
         set_fitness(population, n_queen_size)
         for p in population:
             if p.get_fit() == n_choose_2:
-                return p
+                return p, generations
         population = next_generation(population)
+        generations += 1
 
 
 if __name__ == '__main__':
     start = timer()
-    b = genetic_algorithm()
+    b, generations = genetic_algorithm()
     end = timer()
     formatted_time = "{:.2f}".format((end - start) * 1000)
+    print("generations:", generations)
     print("running time:", formatted_time, "ms")
     b.show()
