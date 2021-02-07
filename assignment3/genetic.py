@@ -1,5 +1,6 @@
 from board import *
 from math import factorial
+from timeit import default_timer as timer
 
 def encode(b : Board):
     the_map = b.get_map()
@@ -91,5 +92,9 @@ def genetic_algorithm(states = 8, n_queen_size = 5):
 
 
 if __name__ == '__main__':
+    start = timer()
     b = genetic_algorithm()
+    end = timer()
+    formatted_time = "{:.2f}".format((end - start) * 1000)
+    print("running time:", formatted_time, "ms")
     b.show()
