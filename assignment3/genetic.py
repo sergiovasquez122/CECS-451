@@ -69,6 +69,17 @@ def cross_over(parent1, parent2):
     child2 = mutation(child2)
     return decode(child1), decode(child2)
 
+def next_generation(population):
+    length = len(population) // 2
+    children = []
+    for _ in range(length):
+        parent1 = selection(population)
+        parent2 = selection(population)
+        child1, child2 = cross_over(parent1, parent2)
+        children.append(child1)
+        children.append(child2)
+    return children
+
 if __name__ == '__main__':
     boards = generate_initial_population()
     for b in boards:
