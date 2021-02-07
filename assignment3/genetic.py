@@ -17,10 +17,8 @@ def decode(s : str):
     for m, c in zip(matrix, s):
         idx = int(c)
         m[idx] = 1
-
     b = Board(len(s))
     b.map = deepcopy(matrix)
-    b.fitness()
     return b
 
 def generate_initial_population(states=8,n_queens_size = 5):
@@ -35,12 +33,11 @@ def set_fitness(population, states):
     for p in population:
         p.fitness()
         p.fit = n_choose_2 - p.fit
-    return p
 
 def set_probability_of_population(population):
     fitnesses = [p.get_fit() for p in population]
     total_fitness = sum(fitnesses)
-    probabilities = [(f / total_fitness for f in fitnesses)]
+    probabilities = [(f / total_fitness) for f in fitnesses]
     return probabilities
 
 def selection(population):
@@ -54,11 +51,11 @@ def selection(population):
     return population[-1]
 
 def mutation(child):
-    idx = random.randint(0, len(child) + 1)
+    idx = random.randint(0, len(child))
     if idx == 0:
         return child
     altered_child = list(child)
-    altered_child[idx] = str(random.randint(0, len(child) - 1))
+    altered_child[idx - 1] = str(random.randint(0, len(child) - 1))
     return ''.join(child)
 
 def cross_over(parent1, parent2):
@@ -86,7 +83,7 @@ def genetic_algorithm(states = 8, n_queen_size = 5):
     population = generate_initial_population(states, n_queen_size)
     n_choose_2 = combination(n_queen_size, 2)
     while True:
-        population = set_fitness(population, states)
+        set_fitness(population, states)
         for p in population:
             if p.get_fit() == n_choose_2:
                 return p
@@ -94,7 +91,5 @@ def genetic_algorithm(states = 8, n_queen_size = 5):
 
 
 if __name__ == '__main__':
-    boards = generate_initial_population()
-    for b in boards:
-        b.show()
-        print()
+    b = genetic_algorithm()
+    b.show()
