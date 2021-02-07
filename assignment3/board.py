@@ -1,4 +1,5 @@
-from copy import deepcopy import random
+from copy import deepcopy 
+import random
 import numpy as np
 
 
@@ -49,7 +50,6 @@ class Board:
 
     def successor(self, i, j):
         # assumes that given a valid position
-        possible_movements = [[1, 0], [0, 1], [-1, 0], [0, -1], [-1, -1], [-1, 1], [1, -1], [1, 1]] # moves all 8 eight directions
         possible_movements = [[0, i] for i in range(-self.n_queen, self.n_queen)] # columns of a particular row
         best_fit = float('inf')
         best_successor = Board(self.n_queen)
@@ -85,19 +85,4 @@ class Board:
 
     def set_map(self, map):
         self.map = map
-
-if __name__ == '__main__':
-    b = Board(4)
-    b.set_map(deepcopy([[1, 1, 1, 1], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]))
-    b.fitness()
-    b.show()
-
-    c = Board(2)
-    c.fitness()
-    c.show()
-
-    d = Board(4)
-    d.set_map(deepcopy([[1, 0, 0, 0], [1, 0, 0, 0], [1, 0, 0, 0], [1, 0, 0, 0]]))
-    d.fitness()
-    d.show()
 
