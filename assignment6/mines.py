@@ -126,8 +126,8 @@ if __name__ == '__main__':
     n_mines = 40
     sweeper = Mines(gridsize, n_mines)
     sweeper.showcurrent()
-    # while not sweeper.isfail():
-    #     a = random.randint(0, gridsize - 1)
-    #     b = random.randint(0, gridsize - 1)
-    #     sweeper.checkcell((a,b))
-    #     sweeper.showcurrent()
+    while not sweeper.isfail():
+        a = random.randint(0, gridsize - 1)
+        b = random.randint(0, gridsize - 1)
+        sweeper.checkcell((a,b))
+        sweeper.showcurrent()
