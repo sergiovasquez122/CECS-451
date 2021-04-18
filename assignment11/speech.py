@@ -59,13 +59,21 @@ class Speech:
             score = distance.levenshtein(s1, s2) / max(len(s1), len(s2))
             self.distances.append(score)
 
+def read_in_all_audio_submissions(inFile, inDir):
+    result = [[] for _ in range(25)]
+    for the_dir in os.listdir(inDir):
+        sp = Speech()
+        sp.read_original(inFile)
+        sp.conv_audio(os.path.join(inDir, the_dir))
+        sp.comp_string()
+        for idx, value in enumerate(sp.distances):
+            result[idx].append(value)
+    return result
+
 
 if __name__ == '__main__':
-    sp = Speech()
-    sp.read_original("How Speech Recognition Works.txt")
-    sp.conv_audio("Group 4")
-    sp.comp_string()
     fig, ax = plt.subplots(figsize=(20,10))
     x = ['Sent{i}'.format(i = i + 1) for i in range(25)]
-    sns.boxplot(x, sp.distances, ax = ax)
+    results = read_in_all_audio_submissions("How Speech Recognition Works.txt", "audio_files")
+    sns.boxplot(x, results, ax = ax)
     plt.show()
