@@ -41,7 +41,7 @@ class Speech:
             message = ""
             with sr.WavFile(file_joined) as source:
                 audio = r.record(source)
-                message = r.recognize_google(audio)
+                message = r.recognize_sphinx(audio)
             position = (tens_digit + ones_digit) - 1
             audio_files_to_text[position] = message
         # parse
