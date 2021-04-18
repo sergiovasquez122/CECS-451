@@ -2,6 +2,8 @@ import string
 import os
 import speech_recognition as sr
 import distance
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 class Speech:
     def __init__(self):
@@ -52,7 +54,10 @@ class Speech:
 
 
 if __name__ == '__main__':
-    s1 = ['I', 'am', 'dog']
-    s2 = ['I', 'am', 'groot']
-    ld = distance.nlevenshtein(s1, s2)
-    print(ld)
+    sp = Speech()
+    sp.read_original("How Speech Recognition Works.txt")
+    sp.conv_audio("audio_files")
+    sp.comp_string()
+    x = ['Sent{i}'.format(i = i) for i in range(25)]
+    ax = sns.boxplot(x, sp.distances)
+    plt.show()
