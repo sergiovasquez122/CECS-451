@@ -1,6 +1,7 @@
 import string
 import os
 import speech_recognition as sr
+import distance
 
 class Speech:
     def __init__(self):
@@ -18,7 +19,7 @@ class Speech:
             for c in punct:
                 line = line.replace(c, '')
             for word in line.split():
-                self.original[idx].append(word)
+                self.original[idx].append(word.lower())
             self.original.append([])
             idx += 1
 
@@ -41,13 +42,17 @@ class Speech:
             for c in punct:
                 line = line.replace(c, '')
             for word in line.split():
-                self.recognized[idx].append(word)
+                self.recognized[idx].append(word.lower())
             self.recognized.append([])
 
     def comp_string(self):
-        pass
+        for s1, s2 in zip(self.original, self.recognized):
+            score = distance.levenshtein(s1, s2) / max(len(s1), len(s2))
+            self.distances.append(score)
+
 
 if __name__ == '__main__':
-    s = Speech()
-    s.read_original("How Speech Recognition Works.txt")
-
+    s1 = ['I', 'am', 'dog']
+    s2 = ['I', 'am', 'groot']
+    ld = distance.nlevenshtein(s1, s2)
+    print(ld)
