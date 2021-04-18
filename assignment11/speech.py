@@ -27,25 +27,32 @@ class Speech:
 
 
     def conv_audio(self, inDir):
-        audio_files_to_text = [[] for _ in range(25)]
+        audio_files_to_text = ['' for _ in range(25)]
         r = sr.Recognizer()
         # convert to string
         for file in os.listdir(inDir):
             tens_digit = 0
-            if file[-2].isnumeric():
-                tens_digit = (ord(file[-2]) - 48) * 10
-            ones_digit = ord(file[-1]) - 48
-            message = r.recognize_google(file)
-            audio_files_to_text[tens_digit + ones_digit].append(message)
+            idx = file.find('.')
+            file_base = file[:idx]
+            if file_base[-2].isnumeric():
+                tens_digit = (ord(file_base[-2]) - 48) * 10
+            ones_digit = ord(file_base[-1]) - 48
+            file_joined = os.path.join(inDir, file)
+            message = ""
+            with sr.WavFile(file_joined) as source:
+                audio = r.record(source)
+                message = r.recognize_google(audio)
+            position = (tens_digit + ones_digit) - 1
+            audio_files_to_text[position] = message
         # parse
         for idx,  line in enumerate(audio_files_to_text):
             punct = string.punctuation
             punct += '’'
+            self.recognized.append([])
             for c in punct:
                 line = line.replace(c, '')
             for word in line.split():
                 self.recognized[idx].append(word.lower())
-            self.recognized.append([])
 
     def comp_string(self):
         for s1, s2 in zip(self.original, self.recognized):
@@ -56,8 +63,9 @@ class Speech:
 if __name__ == '__main__':
     sp = Speech()
     sp.read_original("How Speech Recognition Works.txt")
-    sp.conv_audio("audio_files")
+    sp.conv_audio("Group 4")
     sp.comp_string()
-    x = ['Sent{i}'.format(i = i) for i in range(25)]
-    ax = sns.boxplot(x, sp.distances)
+    fig, ax = plt.subplots(figsize=(20,10))
+    x = ['Sent{i}'.format(i = i + 1) for i in range(25)]
+    sns.boxplot(x, sp.distances, ax = ax)
     plt.show()
